@@ -19,35 +19,27 @@
  */
 package thymeleafexamples.gtvg.business.entities.repositories;
 
+import thymeleafexamples.gtvg.business.entities.Comment;
+import thymeleafexamples.gtvg.business.entities.Product;
+
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-import thymeleafexamples.gtvg.business.entities.Comment;
-import thymeleafexamples.gtvg.business.entities.Product;
-
-
 public class ProductRepository {
 
     private static final ProductRepository INSTANCE = new ProductRepository();
-    private final Map<Integer,Product> productsById;
-    
-    
-    
+    private final Map<Integer, Product> productsById;
+
     public static ProductRepository getInstance() {
         return INSTANCE;
     }
-    
-    
+
     private ProductRepository() {
-        
         super();
-        
         this.productsById = new LinkedHashMap<Integer, Product>();
-
-
         final Product prod1 = new Product(1, "Fresh Sweet Basil", true, new BigDecimal("4.99"));
         final Product prod2 = new Product(2, "Italian Tomato", false, new BigDecimal("1.25"));
         final Product prod3 = new Product(3, "Yellow Bell Pepper", true, new BigDecimal("2.50"));
@@ -78,8 +70,6 @@ public class ProductRepository {
         final Product prod28 = new Product(28, "Unsweetened Lemon Green Tea", true, new BigDecimal("18.34"));
         final Product prod29 = new Product(29, "Whole Grain Flakes Cereal", true, new BigDecimal("3.52"));
         final Product prod30 = new Product(30, "Berry Chewy Granola Bars", true, new BigDecimal("4.00"));
-
-
         this.productsById.put(prod1.getId(), prod1);
         this.productsById.put(prod2.getId(), prod2);
         this.productsById.put(prod3.getId(), prod3);
@@ -110,11 +100,8 @@ public class ProductRepository {
         this.productsById.put(prod28.getId(), prod28);
         this.productsById.put(prod29.getId(), prod29);
         this.productsById.put(prod30.getId(), prod30);
-        
-        
         prod2.getComments().add(new Comment(1, "I'm so sad this product is no longer available!"));
         prod2.getComments().add(new Comment(2, "When do you expect to have it back?"));
-
         prod13.getComments().add(new Comment(3, "Very tasty! I'd definitely buy it again!"));
         prod13.getComments().add(new Comment(4, "My kids love it!"));
         prod13.getComments().add(new Comment(5, "Good, my basic breakfast cereal. Though maybe a bit in the sweet side..."));
@@ -123,37 +110,25 @@ public class ProductRepository {
         prod13.getComments().add(new Comment(8, "Cheaper than at the local store!"));
         prod13.getComments().add(new Comment(9, "I'm sorry to disagree, but IMO these are far too sweet"));
         prod13.getComments().add(new Comment(10, "Good. Pricey though."));
-
-
         prod9.getComments().add(new Comment(11, "Made bread with this and it was great!"));
         prod9.getComments().add(new Comment(12, "Note: this comes actually mixed with wheat flour"));
-
         prod14.getComments().add(new Comment(13, "Awesome Spanish oil. Buy it now."));
         prod14.getComments().add(new Comment(14, "Would definitely buy it again. Best one I've tasted"));
         prod14.getComments().add(new Comment(15, "A bit acid for my taste, but still a very nice one."));
         prod14.getComments().add(new Comment(16, "Definitely not the average olive oil. Really good."));
-
         prod16.getComments().add(new Comment(17, "Great value!"));
-
         prod24.getComments().add(new Comment(18, "My favourite :)"));
-
         prod30.getComments().add(new Comment(19, "Too hard! I would not buy again"));
         prod30.getComments().add(new Comment(20, "Taste is OK, but I agree with previous comment that bars are too hard to eat"));
         prod30.getComments().add(new Comment(21, "Would definitely NOT buy again. Simply unedible!"));
-
-
     }
-    
-    
-    
+
     public List<Product> findAll() {
         return new ArrayList<Product>(this.productsById.values());
     }
-    
+
     public Product findById(final Integer id) {
         return this.productsById.get(id);
     }
-    
 
-    
 }
